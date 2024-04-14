@@ -5,10 +5,16 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     email: {
+        unique:true,
         type:String
     },
     password: {
         type:String
+    },
+    role: {
+        type: String,
+        enum : ['USER','ADMIN','SUPERADMIN'],
+        default: 'USER'
     },
     
 });

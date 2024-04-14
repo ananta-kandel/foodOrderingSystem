@@ -28,14 +28,18 @@ const restaurantSchema = new mongoose.Schema({
     estimatedDeliveryTime:{
         type:Number
     },
-    cuisines : [{}],
-    menuItems :[menuItemsSchema],
-    // menuItems: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'menuModel' // Replace 'menuModel' with the actual name of your Mongoose model
-    // },
+    cuisines : [],
+    // menuItems :[menuItemsSchema],
+    menuItems: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'menuModel' // Replace 'menuModel' with the actual name of your Mongoose model
+    },
     imageUrl  :{
         type:String,
+    },
+    description :{
+        required:true,
+        type:String
     }
 
 })

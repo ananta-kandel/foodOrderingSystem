@@ -1,0 +1,6 @@
+.header{
+    height: 50vh;
+    background: url("../assests/hero.jpeg") no-repeat;
+    background-size: cover;
+    position: relative;
+}

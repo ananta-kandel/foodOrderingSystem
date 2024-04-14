@@ -1,48 +1,18 @@
 const userModel = require("../model/user");
 const generateToken = require("../utils/tokenGeneration");
-const nodemailer = require('nodemailer');
-const multer = require("multer")
-
 
 const register = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password ,role } = req.body;
     try {
         const checkUserName = await userModel.findOne({ username });
         if (checkUserName) {
-            return res.send("User already exists");
+            // return res.status("401").({"message" : "User already exists"});
+            return res.status(401).send("user Already Exists")
         }
-        //otp registration
-        // const otp = Math.random().toString().slice(2, 8);
-//         const transporter = nodemailer.createTransport({
-//             service: 'gmail',
-//             host: "smtp.gmail.com",
-//   port: 465,
-//   secure: true,
-//             auth: {
-//                 user: 'kandelananta5@gmail.com',
-//                 pass: '9860E402XXA@'
-//             }
-//         });
-//         const mailOptions = {
-//             from: 'your_email@gmail.com',
-//             to: email,
-//             subject: 'OTP for Registration',
-//             text: `Your OTP for registration is: ${otp}`
-//         };
-
-//         transporter.sendMail(mailOptions, (error, info) => {
-//             if (error) {
-//                 console.error('Error sending email:', error);
-//                 res.status(500).send('Error sending email');
-//             } else {
-//                 console.log('Email sent:', info.response);
-//                 res.status(200).send('OTP sent to your email');
-//             }
-//         });
-        
-        const newUser = await new userModel({ username, email, password });
+        const newUser = new userModel({ username, email, password ,role});
         await newUser.save();
         const data ={
+            role : newUser.role,
             id : newUser._id
         }
         const access_token = generateToken(data);
@@ -60,9 +30,10 @@ const login = async(req,res) =>{
     try{
     const {username , password} = req.body;
     const user = await userModel.findOne({ username , password})
-    console.log(user);
+    console.log(user.role)
     const data = {
-        id: user._id
+        id: user._id,
+        role:user.role
     }
     const access_token = generateToken(data);
     if(user){

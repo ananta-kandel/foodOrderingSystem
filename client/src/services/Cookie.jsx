@@ -1,5 +1,5 @@
 import createStore from 'react-auth-kit/createStore';
-export const store = createStore({
+export const Store = createStore({
   authName:'_auth',
   authType:'cookie',
   cookieDomain: window.location.hostname,

@@ -24,13 +24,13 @@ const ShowYourMenu = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
-
   useEffect(() => {
     const getMenuData = async () => {
       try {
-        const response = await axios.get(`${globalConstant.serverUrl}/api/restaurant/menu`, { headers });
-        setMenuItems(response.data.menuItems);
+        const response = await axios.get(`${globalConstant.serverUrl}/api/restaurant/getmenu`, { headers });
+        // setMenuItems(response.data.Items);
+       const item = response.data[0].items;
+       setMenuItems(item);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching menu data:', error);
