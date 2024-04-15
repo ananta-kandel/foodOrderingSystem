@@ -1,29 +1,42 @@
 const  mongoose = require("mongoose")
 const menuModel = require("../model/menu.model")
+const {handleUpload} = require("../utils/cloudnarySetup")
 
-const createMenu =async(req,res) => {
-try{
-        const user = id 
-        const existingMenu = await menuModel.findOne({ user });
-        console.log(req.body)
-        const {items} = req.body
-        console.log(items)
-        if (existingMenu) {
-            existingMenu.items.push(...items);
-            await existingMenu.save();
-        } else {
-            // If no document exists, create a new one
-            const menu = new menuModel({ user, items });
-            await menu.save();
-        }
-        res.status(200).json({
-            message: "Menu Created Sucessfully",
-        });
-}
-catch(e){
-    res.json({"erroe":"dd"})
-} 
-}
+const createMenu = async (req, res) => {
+  console.log('body: ', req.body);
+  // console.log('files: ', req.file)
+    try {
+      const user = id;
+      const existingMenu = await menuModel.findOne({ user });
+  
+      const { items } = req.body;
+      const itemsArray = JSON.parse(items);
+     console.log(itemsArray);
+     
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+            const cloudnaryResponse = await handleUpload(dataURI);
+            const imageUrl =  cloudnaryResponse.url
+  
+      if (existingMenu) {
+        // If menu exists, update existing items and add new items
+        const updatedItems = itemsArray.map(item => ({ ...item, imageUrl }));
+        existingMenu.items.push(...updatedItems);
+        await existingMenu.save();
+      } else {
+        // If no menu exists, create a new one with the items and image
+        const menu = new menuModel({ user, items: items.map(item => ({ ...item, imageUrl })) });
+        await menu.save();
+      }
+  
+      res.status(200).json({ message: "Menu Created Successfully" });
+    } catch (error) {
+      console.error("Error:", error);
+      res.status(500).json({ error: error.message || "Internal Server Error" });
+    }
+  };
+
+
 
 const menuByuser = async(req,res) =>{
    try{

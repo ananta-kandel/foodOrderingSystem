@@ -17,7 +17,7 @@ router.post("/addmenu",authenticUser('ADMIN'),addMenu)
 router.get("/getonerestaurant/:id",authenticUser('USER'),getOneRestaurantUserSide)
 
 //routes for menu
-router.post("/createmenu" ,authenticUser('ADMIN'), createMenu)
+router.post("/createmenu" ,authenticUser('ADMIN'), multerUploads,createMenu)
 router.put("/updatemenuitems/:id",authenticUser('ADMIN'),updateMenuItems)
 router.delete("/deletemenuitems",authenticUser,deleteMenuItems)
 router.get("/getmenu" ,authenticUser('ADMIN'), menuByuser)
