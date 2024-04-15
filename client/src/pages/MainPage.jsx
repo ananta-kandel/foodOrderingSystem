@@ -119,6 +119,7 @@ useEffect(()=>{console.log(restaurant)},[restaurant])
              {items.description}
            </Text>
            <div className='flex'>
+            
            {items.cuisines.map((cusine , index) => (
                 <Text color='blue.600' fontSize='2xl'>
                   {cusine}, 

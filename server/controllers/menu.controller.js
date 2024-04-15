@@ -28,7 +28,15 @@ catch(e){
 const menuByuser = async(req,res) =>{
    try{
     const menu = await menuModel.find({user:id})
-    res.send(menu)
+    if(!menu){
+      res.status(201).json({
+        message:"No any menu"
+      })
+    }
+    else{
+        res.send(menu)
+    }
+    
     console.log(menu)
    }
    catch(e){

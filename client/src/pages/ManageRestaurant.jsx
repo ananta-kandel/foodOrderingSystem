@@ -44,7 +44,7 @@ const ManageRestaurant = () => {
   for (const key in restaurantData) {
     formData.append(key, restaurantData[key]);
   }
-  formData.append('cuisines', JSON.stringify(checkBox));
+  formData.append('cuisines', checkBox);
   formData.append('file', file);
   try { 
     console.log(formData)

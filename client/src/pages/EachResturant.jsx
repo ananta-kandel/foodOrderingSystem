@@ -60,6 +60,7 @@ const EachResturant = () => {
             </div>
             
          </div>
+         {restaurant.map((item)=>(<h1>{item.description}</h1>))}
          <div className='flex'>
          <p className='text-3xl text-red-500'>Restaurant Name</p>
          </div>
@@ -70,7 +71,8 @@ const EachResturant = () => {
       </nav>
 
       <div className="header flex text-white justify-center flex-col pl-10 ">
-            <p className='text-5xl font-bold'>Restaurant Name</p>
+            {restaurant?.map((item)=>(<p className='text-5xl font-bold'>{item.restaurantName}</p>))}
+            
             <div className='flex my-2 text-3xl'>
                 <p className='flex items-center'><MapPin />Sifal,kathmandu 44600</p>
                 <p className='flex ml-2 items-center'><PhoneOutgoing />+977 014286944</p>
