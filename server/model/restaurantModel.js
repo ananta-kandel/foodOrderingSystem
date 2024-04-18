@@ -22,6 +22,17 @@ const restaurantSchema = new mongoose.Schema({
     city:{
         type:String
     },
+    longitude:{
+        type:Number,
+        required:true
+    },
+    latitude:{
+        type:Number,
+        required:true
+    },
+    contactNumber:{
+        type:Number,
+    },
     deliveryPrice:{
         type:Number
     },

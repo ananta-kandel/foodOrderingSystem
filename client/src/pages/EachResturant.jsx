@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useTransition} from 'react'
 import axios from 'axios'
 import { globalConstant } from "../constant/constant";
 import { Input,Button } from '@chakra-ui/react'
@@ -27,7 +27,8 @@ const EachResturant = () => {
   const [restaurant, setRestaurant] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [restaurantData , setRestaurantData] = useState([])
+  const newRestaurantData = [];
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
@@ -55,7 +56,9 @@ const EachResturant = () => {
   if (!restaurant) {
     return <div>No restaurant found</div>;
   }
+  
 
+  
   return (
     <>
       <nav className='flex items-center  justify-between h-[13vh]  bg-white'>
@@ -66,7 +69,7 @@ const EachResturant = () => {
             
          </div>
          <div className='flex'>
-         <p className='text-3xl text-red-500'>Restaurant Name</p>
+         <p className='text-3xl text-red-500'></p>
          </div>
         <div className='flex'>
         <Input type="search"

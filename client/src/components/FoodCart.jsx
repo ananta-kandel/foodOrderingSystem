@@ -3,6 +3,7 @@ import { X, ShoppingCart } from 'lucide-react';
 import FoodItems from './FoodItems';
 import {  useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 const FoodCart = () => {
   const [activeCart , setActiveCart] = useState(true);
   const cartItems = useSelector((state)=>state.cart.cart);
@@ -40,8 +41,8 @@ const FoodCart = () => {
         <h3 className='font-semibold '>Items: {totalQty} </h3>
         <h3 className='font-semibold '>Total Amount : {totalPrice} </h3>
         <hr className='w-[90vw] my-2' />
-        <button className='bg-red-500 font-bold px-3 text-white py-2 rounded-lg w-[18vw] mb-5'>Place Order</button>
-         </div>
+       <Link to="/checkout"><button className='bg-red-500 font-bold px-3 text-white py-2 rounded-lg w-[18vw] mb-5'>Procede To checkout</button></Link> 
+         </div><Link/>
     </div>
     <ShoppingCart size={60} onClick={()=>{setActiveCart(!activeCart)}} className={`text-red-500 fixed shadow-md text-5xl bottom-3 right-10 pointer-cursor hover:translate-x-1 ${totalQty >0 &&  "animate-bounce delay-500 transition-all"}` }/>
     </>

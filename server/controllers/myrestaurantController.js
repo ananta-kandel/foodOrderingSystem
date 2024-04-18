@@ -6,7 +6,7 @@ const myRestaurant = async(req,res) =>{
     try{
         const user = new mongoose.Types.ObjectId(id)
         console.log(req.body)
-        const {restaurantName,city,deliveryPrice, estimatedDeliveryTime,cuisines,description} = req.body
+        const {restaurantName,city,deliveryPrice, estimatedDeliveryTime,cuisines,description,longitude,latitude} = req.body
         const existingResturant = await resturantModel.findOne({restaurantName})
         const resturantByUser = await resturantModel.find({user:id} )
         if(existingResturant){
@@ -17,7 +17,7 @@ const myRestaurant = async(req,res) =>{
             let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
             const cloudnaryResponse = await handleUpload(dataURI);
             const imageUrl =  cloudnaryResponse.url
-           const newResturant = new resturantModel({user,restaurantName,city,deliveryPrice, estimatedDeliveryTime,cuisines,imageUrl,description})
+           const newResturant = new resturantModel({user,restaurantName,city,deliveryPrice, estimatedDeliveryTime,cuisines,imageUrl,description,longitude,latitude})
            await newResturant.save()
            res.status(200).json({
                message: "Resturant created sucessfully",

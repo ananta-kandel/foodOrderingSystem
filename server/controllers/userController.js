@@ -12,6 +12,7 @@ const register = async (req, res) => {
         const newUser = new userModel({ username, email, password ,role});
         await newUser.save();
         const data ={
+            username: newUser.username,
             role : newUser.role,
             id : newUser._id
         }
@@ -32,6 +33,7 @@ const login = async(req,res) =>{
     const user = await userModel.findOne({ username , password})
     console.log(user.role)
     const data = {
+        username: user.username,
         id: user._id,
         role:user.role
     }

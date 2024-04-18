@@ -20,6 +20,8 @@ import ErrorPage from "../pages/ErrorPage";
 import Map from "../components/Map";
 import Admin from "../pages/Admin";
 import RestaurantByAdmin from "../pages/RestaurantByAdmin";
+import CheckOut from "../pages/CheckOut";
+import Sucess from "../components/Sucess"
 const AppRoutes = () => {
   return (
     <BrowserRouter>
@@ -44,7 +46,9 @@ const AppRoutes = () => {
       <Route path="/createmenu" element={<CreateMenu/>}/>
       <Route path="/viewmenu" element={<ShowYourMenu/>}/>
       <Route path="/viewrestaurant" element={<RestaurantByAdmin/>}/>
+      <Route path="/checkout" element={<CheckOut/>}/>
       <Route path="/map" element={<Map/>}/>
+      <Route path="/sucess" element={<Sucess/>}/>
       <Route path="/*" element={<ErrorPage/>} />
     </Routes>
   </BrowserRouter>
