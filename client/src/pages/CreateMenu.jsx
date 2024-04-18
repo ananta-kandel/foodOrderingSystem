@@ -51,7 +51,6 @@ const CreateMenu = () => {
             const formData = new FormData();
             formData.append('file', file);
             formData.append('items', JSON.stringify(menuItems));
-
             const headers = { 'Authorization': authHeader };
             await axios.post(`${globalConstant.serverUrl}/api/restaurant/createMenu`, formData, { headers });
             console.log('Menu created successfully');

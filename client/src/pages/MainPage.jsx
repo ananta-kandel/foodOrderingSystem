@@ -71,7 +71,6 @@ const MainPage = () => {
 
 useEffect(()=>{console.log(restaurant)},[restaurant])
   return (
-
     <>
     <div className=''>
          <nav className='flex items-center  justify-between h-[13vh]  bg-white'>
