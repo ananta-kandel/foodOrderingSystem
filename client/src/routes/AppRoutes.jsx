@@ -17,7 +17,7 @@ import ShowYourMenu from "../pages/ShowYourMenu";
 import EachResturant from "../pages/EachResturant";
 import CreateMenu from "../pages/CreateMenu"
 import ErrorPage from "../pages/ErrorPage";
-import Map from "../components/Map";
+
 import Admin from "../pages/Admin";
 import RestaurantByAdmin from "../pages/RestaurantByAdmin";
 const AppRoutes = () => {
@@ -44,7 +44,6 @@ const AppRoutes = () => {
       <Route path="/createmenu" element={<CreateMenu/>}/>
       <Route path="/viewmenu" element={<ShowYourMenu/>}/>
       <Route path="/viewrestaurant" element={<RestaurantByAdmin/>}/>
-      <Route path="/map" element={<Map/>}/>
       <Route path="/*" element={<ErrorPage/>} />
     </Routes>
   </BrowserRouter>
