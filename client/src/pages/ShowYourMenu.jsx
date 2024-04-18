@@ -60,6 +60,7 @@ const ShowYourMenu = () => {
       <Tr>
         <Th>Dish Name</Th>
         <Th>Price</Th>
+        <Th>Image</Th>
         <Th>Action</Th>
       </Tr>
     </Thead>
@@ -70,6 +71,7 @@ const ShowYourMenu = () => {
         <>
         <Td className='m-2'>{menuItem.name}</Td>
         <Td className='m-2'>{menuItem.price}</Td>
+        <Td className='m-2'><img src={menuItem.imageUrl} className='h-[100px] '/> </Td>
         <Td className='m-2'><Button className='m-2'> <MdOutlineModeEditOutline></MdOutlineModeEditOutline>Edit</Button><Button> <MdDeleteForever></MdDeleteForever>Delete</Button></Td>
         </>
         </Tr>
